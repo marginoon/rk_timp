@@ -1,1 +1,0 @@
-/usr/bin/g++ CMakeFiles/RunTest.dir/tests/MainTest.cpp.o -o RunTest  --coverage lib/libgtest.a lib/libgtest_main.a lib/libgmock_main.a libsort.a lib/libgmock.a lib/libgtest.a -lpthread 
