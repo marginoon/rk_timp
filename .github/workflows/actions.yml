@@ -7,10 +7,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
-        - name: build bubble_sort
+        - name: build sort
           shell: bash
-          run: |
-            cd bubble_sort   
+          run: |   
             cmake -H. -B_build
             cmake --build _build
           
