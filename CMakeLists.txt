@@ -1,16 +1,24 @@
-cmake_minimum_required(VERSION 3.22)
-project(RK2)
+cmake_minimum_required(VERSION 3.4)
 
-set(CMAKE_CXX_STANDARD 14)
+SET(COVERAGE OFF CACHE BOOL "Coverage")
+SET(CMAKE_CXX_COMPILER "/usr/bin/g++")
+project(RK_2)
 add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/third-party/gtest" "gtest")
 
 
 add_library(sort STATIC timp.cpp)
 
-add_executable(test ${CMAKE_CURRENT_SOURCE_DIR}/tests/MainTest.cpp)
+add_executable(RunTest ${CMAKE_CURRENT_SOURCE_DIR}/tests/MainTest.cpp)
 
 
 
-target_link_libraries(test gtest gtest_main sort)
 
-cmake_minimum_required(VERSION 3.4)
+
+if (COVERAGE)
+    target_compile_options(RunTest PRIVATE --coverage)
+    target_link_libraries(RunTest PRIVATE --coverage)
+endif()
+
+target_include_directories(RunTest PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+target_link_libraries(RunTest PRIVATE gtest gtest_main gmock_main sort)
